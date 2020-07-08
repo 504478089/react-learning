@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ThemeContext from '../theme-context'
 class DigitalClock extends React.Component{
     constructor(props){
         super(props)
@@ -22,10 +22,19 @@ class DigitalClock extends React.Component{
     }
     render(){
         return (
-            <div style={{textAlign:'right'}}>
-                <h4>{this.state.date.toLocaleTimeString()}</h4>
-                
-            </div>
+            <ThemeContext.Consumer>
+                {
+                    theme =>{
+                        return (
+                            <div style={{textAlign:'right',backgroundColor:theme.bgColor,color:theme.color}}>
+                                <h4>{this.state.date.toLocaleTimeString()}</h4>
+                                
+                            </div>
+                        )
+                    }
+                }
+            </ThemeContext.Consumer>
+            
         )
     }
 }
